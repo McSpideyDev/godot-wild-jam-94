@@ -1,0 +1,27 @@
+[gd_scene format=3 uid="uid://csotkmbxfo43n"]
+
+[ext_resource type="Script" uid="uid://dx7yn0xlrtst3" path="res://scripts/turtle.gd" id="1_1l2iw"]
+[ext_resource type="Resource" uid="uid://b2tbane2oween" path="res://resources/tier1_turtle.tres" id="2_7kcg0"]
+[ext_resource type="Texture2D" uid="uid://ba5d2ppct0kqw" path="res://icon.svg" id="2_hbk6c"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_7kcg0"]
+radius = 63.0
+height = 126.0
+
+[node name="Turtle" type="CharacterBody2D" unique_id=2094643626]
+input_pickable = true
+script = ExtResource("1_1l2iw")
+data = ExtResource("2_7kcg0")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1132298734]
+texture = ExtResource("2_hbk6c")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1005818827]
+shape = SubResource("CapsuleShape2D_7kcg0")
+
+[node name="WanderTimer" type="Timer" parent="." unique_id=329303631]
+wait_time = 2.0
+autostart = true
+
+[connection signal="input_event" from="." to="." method="_on_input_event"]
+[connection signal="timeout" from="WanderTimer" to="." method="_on_timer_timeout"]

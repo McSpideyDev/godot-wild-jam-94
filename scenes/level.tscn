@@ -1,0 +1,28 @@
+[gd_scene format=3 uid="uid://cnnl3mp0cj7v6"]
+
+[ext_resource type="PackedScene" uid="uid://csotkmbxfo43n" path="res://scenes/turtle.tscn" id="1_2q6dc"]
+
+[node name="Level" type="Node2D" unique_id=681200338]
+
+[node name="MoveArea" type="ReferenceRect" parent="." unique_id=1026362541 groups=["area"]]
+anchors_preset = -1
+offset_left = 50.0
+offset_top = 50.0
+offset_right = 1100.0
+offset_bottom = 600.0
+mouse_filter = 2
+
+[node name="ColorRect" type="ColorRect" parent="MoveArea" unique_id=1293507241]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0.47635567, 0.5572473, 0.38950655, 1)
+
+[node name="TurtleContainer" type="Node" parent="." unique_id=2091203631]
+
+[node name="Turtle" parent="TurtleContainer" unique_id=2094643626 instance=ExtResource("1_2q6dc")]
+position = Vector2(366, 335)
