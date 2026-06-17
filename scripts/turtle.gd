@@ -11,6 +11,7 @@ var is_mouse_over: bool = false
 
 @onready var sprite: Sprite2D = $Sprite2D
 @onready var wander_timer: Timer = $WanderTimer
+@onready var merge_detector: Area2D = $MergeDetector
 
 func _ready() -> void:
 	if data:
@@ -59,6 +60,7 @@ func _on_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
 		if event.pressed:
 			current_state = State.DRAGGED
 			z_index = 10
+			wander_timer.stop()
 
 	
 func _input(event):
@@ -66,4 +68,29 @@ func _input(event):
 		if not event.pressed and current_state == State.DRAGGED:
 			current_state = State.WANDERING
 			z_index = 0
-			_pick_new_target()
+			
+			if not check_for_merge():
+				_pick_new_target()
+
+func check_for_merge() -> bool:
+	var bodies = merge_detector.get_overlapping_bodies()
+	for body in bodies:
+		if body is Turtle and body != self:
+			if body.data.tier == self.data.tier and self.data.next_tier != null:
+				perform_merge(body)
+				return true
+	return false
+
+func perform_merge(other_turtle: Turtle):
+	var spawn_pos = other_turtle.global_position
+	var next_data = self.data.next_tier
+	
+	other_turtle.queue_free()
+	self.queue_free()
+	
+	GameEvents.emit_signal("request_mutation", spawn_pos, next_data)
+	
+	
+	
+	
+	

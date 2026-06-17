@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="TurtleData" format=3 uid="uid://dwryp3o2wghyi"]
+
+[ext_resource type="Script" uid="uid://dhxd3qa7dg4y8" path="res://scripts/turtle_data.gd" id="1_6bwwk"]
+[ext_resource type="Texture2D" uid="uid://ctd6punr0g0yp" path="res://assets/solid-circle-png-thumb16.png" id="2_lswwm"]
+
+[resource]
+script = ExtResource("1_6bwwk")
+tier = 2
+texture = ExtResource("2_lswwm")
+metadata/_custom_type_script = "uid://dhxd3qa7dg4y8"

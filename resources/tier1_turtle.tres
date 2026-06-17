@@ -1,9 +1,11 @@
 [gd_resource type="Resource" script_class="TurtleData" format=3 uid="uid://b2tbane2oween"]
 
 [ext_resource type="Script" uid="uid://dhxd3qa7dg4y8" path="res://scripts/turtle_data.gd" id="1_aosmf"]
-[ext_resource type="Texture2D" uid="uid://ba5d2ppct0kqw" path="res://icon.svg" id="2_i28hl"]
+[ext_resource type="Resource" uid="uid://dwryp3o2wghyi" path="res://resources/tier2_turtle.tres" id="1_kykap"]
+[ext_resource type="Texture2D" uid="uid://ba5d2ppct0kqw" path="res://assets/icon.svg" id="3_8qnsm"]
 
 [resource]
 script = ExtResource("1_aosmf")
-texture = ExtResource("2_i28hl")
+texture = ExtResource("3_8qnsm")
+next_tier = ExtResource("1_kykap")
 metadata/_custom_type_script = "uid://dhxd3qa7dg4y8"
