@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="TurtleData" format=3 uid="uid://xteogr8pnimg"]
+
+[ext_resource type="Script" uid="uid://dhxd3qa7dg4y8" path="res://scripts/turtle_data.gd" id="1_lebjp"]
+[ext_resource type="Texture2D" uid="uid://btyye83512rmo" path="res://assets/turtle_textures/tier3_texture.png" id="2_snda5"]
+[ext_resource type="Texture2D" uid="uid://dfwc0n7v17lnr" path="res://assets/turtle_textures/tier3_texture_picked.png" id="3_rg5qj"]
+
+[resource]
+script = ExtResource("1_lebjp")
+texture = ExtResource("2_snda5")
+texture_picked = ExtResource("3_rg5qj")
+metadata/_custom_type_script = "uid://dhxd3qa7dg4y8"

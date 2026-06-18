@@ -9,6 +9,10 @@ var target_position: Vector2
 var wander_bounds: Rect2
 var is_mouse_over: bool = false
 
+var is_stepping: bool = false
+@export var hop_time: float = 0.5
+@export var time_between_steps: float = 0.8
+
 @onready var sprite: Sprite2D = $Sprite2D
 @onready var wander_timer: Timer = $WanderTimer
 @onready var merge_detector: Area2D = $MergeDetector
@@ -35,7 +39,11 @@ func _handle_wandering(delta):
 	if global_position.distance_to(target_position) < 10:
 		_pick_new_target()
 	
-	velocity = global_position.direction_to(target_position) * data.move_speed
+	if is_stepping:
+		velocity = global_position.direction_to(target_position) * data.move_speed
+	else:
+		velocity = Vector2.ZERO	
+	
 	move_and_slide()
 	
 	global_position.x = clamp(global_position.x, wander_bounds.position.x, wander_bounds.end.x)
@@ -51,26 +59,68 @@ func _pick_new_target():
 	
 	wander_timer.wait_time = randf_range(1.0, 4.0) 
 	wander_timer.start()
+	
+	_animate_hop()
+	
+
+func _animate_hop():
+	if current_state == State.DRAGGED: return
+	
+	if global_position.distance_to(target_position) < 20: 
+		is_stepping = false
+		return 
+	
+	sprite.flip_h = target_position.x < global_position.x
+	is_stepping = true
+	
+	var tween = create_tween().set_parallel(true)
+	
+	tween.tween_property(sprite, "scale", Vector2(0.9, 1.1), hop_time * 0.5)
+	tween.tween_property(sprite, "position:y", -8, hop_time * 0.5)
+	
+	await tween.finished
+	
+	var tween_land = create_tween().set_parallel(true)
+	tween_land.tween_property(sprite, "scale", Vector2(1.1, 0.9), hop_time * 0.5)
+	tween_land.tween_property(sprite, "position:y", 0, hop_time * 0.5)
+	
+	is_stepping = false
+	
+	await tween_land.finished
+	
+	var tween_reset = create_tween()
+	tween_reset.tween_property(sprite, "scale", Vector2(1.0, 1.0), 0.1)
+	await tween_reset.finished
+	
 
 
 func _on_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
-	if event is InputEventMouseButton:
-		print("Mouse clicked on turtle!")
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT:
 		if event.pressed:
-			current_state = State.DRAGGED
-			z_index = 10
-			wander_timer.stop()
+			if GameEvents.active_drag_target == null:
+				GameEvents.active_drag_target = self
+				
+				current_state = State.DRAGGED
+				sprite.texture = data.texture_picked
+				z_index = 10
+				wander_timer.stop()
 
 	
 func _input(event):
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT:
 		if not event.pressed and current_state == State.DRAGGED:
+			GameEvents.active_drag_target = null
+			
 			current_state = State.WANDERING
+			sprite.texture = data.texture
 			z_index = 0
 			
 			if not check_for_merge():
 				_pick_new_target()
+				
+func _exit_tree():
+	if GameEvents.active_drag_target == self:
+		GameEvents.active_drag_target = null
 
 func check_for_merge() -> bool:
 	var bodies = merge_detector.get_overlapping_bodies()

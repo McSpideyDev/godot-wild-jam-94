@@ -1,10 +1,14 @@
 [gd_resource type="Resource" script_class="TurtleData" format=3 uid="uid://dwryp3o2wghyi"]
 
 [ext_resource type="Script" uid="uid://dhxd3qa7dg4y8" path="res://scripts/turtle_data.gd" id="1_6bwwk"]
-[ext_resource type="Texture2D" uid="uid://ctd6punr0g0yp" path="res://assets/solid-circle-png-thumb16.png" id="2_lswwm"]
+[ext_resource type="Resource" uid="uid://xteogr8pnimg" path="res://resources/tier3_turtle.tres" id="1_wvl8u"]
+[ext_resource type="Texture2D" uid="uid://b3hwplef2dmg" path="res://assets/turtle_textures/tier2_texture.png" id="2_bt6xa"]
+[ext_resource type="Texture2D" uid="uid://1f6vdibnm6wj" path="res://assets/turtle_textures/tier2_texture_picked.png" id="3_wvl8u"]
 
 [resource]
 script = ExtResource("1_6bwwk")
 tier = 2
-texture = ExtResource("2_lswwm")
+texture = ExtResource("2_bt6xa")
+texture_picked = ExtResource("3_wvl8u")
+next_tier = ExtResource("1_wvl8u")
 metadata/_custom_type_script = "uid://dhxd3qa7dg4y8"
