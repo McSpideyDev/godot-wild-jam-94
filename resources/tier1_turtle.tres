@@ -2,6 +2,8 @@
 
 [ext_resource type="Script" uid="uid://dhxd3qa7dg4y8" path="res://scripts/turtle_data.gd" id="1_aosmf"]
 [ext_resource type="Resource" uid="uid://dwryp3o2wghyi" path="res://resources/tier2_turtle.tres" id="1_kykap"]
+[ext_resource type="Script" uid="uid://be7tkynfl0o1p" path="res://scripts/LootData.gd" id="1_wmi8a"]
+[ext_resource type="Resource" uid="uid://5x7hrm3dulor" path="res://resources/item1.tres" id="2_iu8h6"]
 [ext_resource type="Texture2D" uid="uid://dresr7qrxr8ys" path="res://assets/turtle_textures/tier1_texture.png" id="3_kykap"]
 [ext_resource type="Texture2D" uid="uid://dmsx0f8iawaer" path="res://assets/turtle_textures/tier1_texture_picked.png" id="4_8qnsm"]
 
@@ -10,4 +12,5 @@ script = ExtResource("1_aosmf")
 texture = ExtResource("3_kykap")
 texture_picked = ExtResource("4_8qnsm")
 next_tier = ExtResource("1_kykap")
+loot_pool = Array[ExtResource("1_wmi8a")]([ExtResource("2_iu8h6")])
 metadata/_custom_type_script = "uid://dhxd3qa7dg4y8"

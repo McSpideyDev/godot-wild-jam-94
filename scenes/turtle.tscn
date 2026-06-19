@@ -31,5 +31,7 @@ autostart = true
 [node name="CollisionShape2D" type="CollisionShape2D" parent="MergeDetector" unique_id=1667779489]
 shape = SubResource("CircleShape2D_hbk6c")
 
+[node name="IncomeTimer" type="Timer" parent="." unique_id=1786449638]
+
 [connection signal="input_event" from="." to="." method="_on_input_event"]
 [connection signal="timeout" from="WanderTimer" to="." method="_on_timer_timeout"]

@@ -1,0 +1,19 @@
+[gd_scene format=3 uid="uid://hd30octbfiui"]
+
+[ext_resource type="Texture2D" uid="uid://ba5d2ppct0kqw" path="res://assets/icon.svg" id="1_1v5pa"]
+[ext_resource type="Script" uid="uid://dn36bsi3ckkel" path="res://scripts/income_item.gd" id="1_f26hj"]
+
+[node name="IncomeItem" type="Node2D" unique_id=852414805]
+script = ExtResource("1_f26hj")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=617001112]
+position = Vector2(9.536743e-07, 0)
+scale = Vector2(0.328125, 0.31640625)
+texture = ExtResource("1_1v5pa")
+
+[node name="Label" type="Label" parent="." unique_id=1049621309]
+offset_left = -15.0
+offset_top = -40.0
+offset_right = 25.0
+offset_bottom = -17.0
+text = "+5$"

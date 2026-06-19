@@ -9,3 +9,6 @@ class_name TurtleData extends Resource
 @export var explosion_time: float = 10.0
 @export var materials_yield: Dictionary = {"Scrap": 5}
 @export var next_tier: TurtleData
+@export var loot_pool: Array[LootData] = []
+@export var drop_interval_min: float = 5.0
+@export var drop_interval_max: float = 10.0

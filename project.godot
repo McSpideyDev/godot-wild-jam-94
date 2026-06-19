@@ -18,6 +18,7 @@ config/icon="res://assets/icon.svg"
 [autoload]
 
 GameEvents="*uid://c6p2a2msxifjp"
+GameStats="*uid://upp82c2quofi"
 
 [display]
 

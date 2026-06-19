@@ -1,13 +1,20 @@
 [gd_scene format=3 uid="uid://cnnl3mp0cj7v6"]
 
 [ext_resource type="PackedScene" uid="uid://csotkmbxfo43n" path="res://scenes/turtle.tscn" id="1_2q6dc"]
-[ext_resource type="Script" uid="uid://d2o8riods615m" path="res://scenes/level.gd" id="1_w7c3h"]
+[ext_resource type="Script" uid="uid://d2o8riods615m" path="res://scripts/level.gd" id="1_w7c3h"]
+[ext_resource type="PackedScene" uid="uid://hd30octbfiui" path="res://scenes/income_item.tscn" id="3_w8frs"]
+[ext_resource type="Resource" uid="uid://b2tbane2oween" path="res://resources/tier1_turtle.tres" id="4_mx8sn"]
 
 [node name="Level" type="Node2D" unique_id=681200338]
 script = ExtResource("1_w7c3h")
 turtle_scene = ExtResource("1_2q6dc")
+income_item_scene = ExtResource("3_w8frs")
+spawn_table = {
+ExtResource("4_mx8sn"): 100.0
+}
 
 [node name="MoveArea" type="ReferenceRect" parent="." unique_id=1026362541 groups=["area"]]
+z_index = -2
 anchors_preset = -1
 offset_left = 5.0
 offset_top = 30.0
@@ -75,3 +82,5 @@ offset_top = 8.0
 offset_right = 472.0
 offset_bottom = 24.0
 color = Color(0.87958705, 0.561415, 0.63512963, 1)
+
+[node name="SpawnTimer" type="Timer" parent="." unique_id=1073820944]

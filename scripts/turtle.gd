@@ -16,6 +16,7 @@ var is_stepping: bool = false
 @onready var sprite: Sprite2D = $Sprite2D
 @onready var wander_timer: Timer = $WanderTimer
 @onready var merge_detector: Area2D = $MergeDetector
+@onready var income_timer: Timer = $IncomeTimer
 
 func _ready() -> void:
 	if data:
@@ -27,6 +28,10 @@ func _ready() -> void:
 		
 		wander_timer.timeout.connect(_pick_new_target)
 		_pick_new_target()
+		
+	income_timer.timeout.connect(_on_income_timer_timeout)
+		
+	_setup_income_timer()
 	
 func _physics_process(delta: float) -> void:
 	match current_state:
@@ -140,7 +145,17 @@ func perform_merge(other_turtle: Turtle):
 	
 	GameEvents.emit_signal("request_mutation", spawn_pos, next_data)
 	
+func _setup_income_timer():
+	income_timer.wait_time = randf_range(data.drop_interval_min, data.drop_interval_max)
+	income_timer.one_shot = true
+	income_timer.start()
 	
+func _on_income_timer_timeout():
+	if data.loot_pool.size() > 0:
+		var loot = data.loot_pool.pick_random()
+		GameEvents.emit_signal("spawn_loot_visual", global_position, loot)
+		
+	_setup_income_timer()
 	
 	
 	
